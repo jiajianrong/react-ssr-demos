@@ -4,7 +4,7 @@ const path = require('path');
 //const paths = require('./paths');
 
 const FILES = {
-    NON_REACT: path.join( __dirname, '../src/NonReact.js' ),
+    JS: path.join( __dirname, '../src/NonReact.js' ),
     BUILD: path.join( __dirname, '../build' ),
     SRC: path.join( __dirname, '../src' ),
     HTML: path.join( __dirname, '../public/index.html' ),
@@ -14,7 +14,7 @@ const FILES = {
 module.exports = {
     devtool: 'cheap-module-source-map',
     entry: {
-        index: FILES.NON_REACT,
+        index: FILES.JS,
     },
     output: {
         filename: '[name].js',

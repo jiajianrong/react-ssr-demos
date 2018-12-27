@@ -5,7 +5,7 @@ const path = require('path');
 
 
 const FILES = {
-    NON_REACT: path.join( __dirname, '../src/NonReact.js' ),
+    JS: path.join( __dirname, '../src/NonReact.js' ),
     BUILD: path.join( __dirname, '../build' ),
     SRC: path.join( __dirname, '../src' ),
     HTML: path.join( __dirname, '../public/index.html' ),
@@ -16,7 +16,7 @@ module.exports = {
     
     bail: true,
     entry: {
-        index: FILES.NON_REACT,
+        index: FILES.JS,
     },
     output: {
         filename: 'static/[name].[chunkhash:8].js',

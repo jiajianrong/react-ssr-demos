@@ -5,7 +5,7 @@ const path = require('path');
 
 
 const FILES = {
-    JS: path.join( __dirname, '../src/App.js' ),
+    JS: path.join( __dirname, '../src/App2.js' ),
     BUILD: path.join( __dirname, '../build' ),
     SRC: path.join( __dirname, '../src' ),
     HTML: path.join( __dirname, '../public/index.html' ),
