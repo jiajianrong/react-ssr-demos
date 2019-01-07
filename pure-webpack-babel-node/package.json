@@ -1,0 +1,20 @@
+{
+  "scripts": {
+    "step1": "babel src/index.js --watch --out-file dist/index.js",
+    "step2": "node copy.js && nodemon dist/index.js",
+    "babelwatch": "babel-watch src/index.js",
+    "desc": "可以使用step1/step2，也可以单独使用babelwatch"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^6",
+    "babel-preset-env": "^2.0.0-beta.2",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "babel-runtime": "^6",
+    "babel-watch": "^2.0.7",
+    "webpack": "3.5.1"
+  }
+}
