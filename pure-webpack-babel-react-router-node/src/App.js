@@ -3,31 +3,22 @@ import ReactDOM from 'react-dom';
 import Loadable from 'react-loadable';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 
-import AsyncBundle from './AsyncBundle';
-import Hello  from './Hello';
-import Home   from './Home';
-
-
 //--------------
 // loadable
 //--------------
-const LoadableComponent = Loadable({
+const Footer = Loadable({
   loader: () => import('./Footer'/* webpackChunkName:"Footer" */),
   loading: () => <div>Loading...</div>,
 });
+const Home = Loadable({
+  loader: () => import('./Home'/* webpackChunkName:"Home" */),
+  loading: () => <div>Loading...</div>,
+});
+const Hello = Loadable({
+  loader: () => import('./Hello'/* webpackChunkName:"Hello" */),
+  loading: () => <div>Loading...</div>,
+});
 
-
-//--------------
-// asyncbundle
-//--------------
-const HelloAsyncEnhance = () => import(
-    './HelloAsync' /* webpackChunkName:"HelloAsync" */
-)
-const HelloAsync = (props) => (
-    <AsyncBundle load={HelloAsyncEnhance}>
-        {(Mod) => (<Mod {...props}/>)}
-    </AsyncBundle>
-)
 
 
 //--------------
@@ -40,11 +31,10 @@ const App = (routeKey) => {
               <Switch>
                 <Route exact path="/" component={Home} />
                 <Route exact path="/hello" component={Hello} />
-                <Route exact path="/helloasync" component={HelloAsync}/>
                 <Redirect to="/" />
               </Switch>
             </Router>
-            <LoadableComponent/>
+            <Footer />
         </div>
     )
 }
