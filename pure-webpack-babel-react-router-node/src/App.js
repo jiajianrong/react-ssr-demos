@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Loadable from 'react-loadable';
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import { StaticRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 
 //--------------
 // loadable
@@ -27,7 +27,7 @@ const Hello = Loadable({
 const App = (routeKey) => {
     return (
         <div>
-            <Router>
+            <Router location={routeKey} context={{}}>
               <Switch>
                 <Route exact path="/" component={Home} />
                 <Route exact path="/hello" component={Hello} />
@@ -39,5 +39,5 @@ const App = (routeKey) => {
     )
 }
 
-//module.exports = App;
-ReactDOM.render(<App/>, document.getElementById('root'))
+module.exports = App;
+//ReactDOM.render(<App/>, document.getElementById('root'))

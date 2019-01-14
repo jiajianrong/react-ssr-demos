@@ -6,8 +6,9 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 const Koa = require('koa');
-const cheerio = require("cheerio");
-const reactApp = require('./App');
+const cheerio = require('cheerio');
+const Loadable = require('react-loadable');
+const ReactApp = require('./App');
 
 const app = new Koa();
 const HTML_TEMPLATE = path.join(__dirname, '../public/index.html');
@@ -31,20 +32,41 @@ app.use(async function (ctx, next) {
     
     // html模板
     let $ = cheerio.load(await readFile(HTML_TEMPLATE));
-    
+/*    
     // react string
     let reactStr = ReactDOMServer.renderToString(
-        reactApp(ctx.path)
+        ReactApp(ctx.path)
     );
     
     // 拼装
     $(HTML_ROOT_DIV).html(reactStr);
     
     ctx.body = $.html();
+
+    */
+    
+    
+    let modules = [];
+
+    let reactStr = ReactDOMServer.renderToString(
+        <Loadable.Capture report={moduleName => modules.push(moduleName)}>
+            {ReactApp(ctx.path)}
+        </Loadable.Capture>
+    );
+
+    console.log(modules);
+    
+    $(HTML_ROOT_DIV).html(reactStr);
+    
+    ctx.body = $.html();
 });
 
 
-app.listen(1337)
+Loadable.preloadAll().then(() => {
+    app.listen(1337, () => {
+        console.log('Running on http://localhost:1337/');
+    });
+});
 
 
 

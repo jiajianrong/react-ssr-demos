@@ -1,10 +1,6 @@
 
 
 {
- "presets": ["env", "react", "stage-0"],
-
-  
-  "plugins": [
-    "transform-runtime"
-  ]
+  "presets": ["env", "react"],
+  "plugins": ["transform-runtime", "dynamic-import-node", "react-loadable/babel"]
 }
