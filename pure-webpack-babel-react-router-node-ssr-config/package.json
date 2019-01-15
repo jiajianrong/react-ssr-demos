@@ -1,12 +1,11 @@
 {
   "scripts": {
-    "babelwatch": "babel-watch src/server.js"
+    "babelwatch": "cross-env NODE_ENV=ssrdevelopment BABEL_ENV=ssrdevelopment babel-watch src/server.js"
   },
-  "desc1": "loadable requires webpack when dealing with react, so give up!(details as below)",
-  "desc2": "https://github.com/jamiebuilds/react-loadable#mapping-loaded-modules-to-bundles",
   "dependencies": {
     "cheerio": "^1.0.0-rc.2",
     "koa": "^2.5.1",
+    "koa-static": "^4.0.3",
     "prop-types": "15.5.10",
     "react": "16.4.2",
     "react-dom": "16.4.2",
@@ -27,12 +26,14 @@
     "babel-preset-stage-0": "^6.24.1",
     "babel-runtime": "^6",
     "babel-watch": "^2.0.7",
+    "cross-env": "^5.2.0",
     "css-loader": "^0.28.11",
     "extract-text-webpack-plugin": "^3.0.2",
     "fs-extra": "3.0.1",
     "html-webpack-plugin": "2.29.0",
     "webpack": "3.5.1",
     "webpack-dev-server": "2.7.1",
-    "webpack-manifest-plugin": "1.2.1"
+    "webpack-manifest-plugin": "1.2.1",
+    "webpack-node-externals": "^1.7.2"
   }
 }
