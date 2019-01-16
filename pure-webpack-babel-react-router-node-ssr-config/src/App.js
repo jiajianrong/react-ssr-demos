@@ -5,14 +5,14 @@ import { BrowserRouter as Router } from 'react-router-dom';
 
 import AppRoutes from './AppRoutes';
 
-const Footer = Loadable({
-    loader: () => import('./Footer'/* webpackChunkName:"Footer" */),
-    loading: () => <div>Loading...</div>,
-});
-
 
 const App = () => {
-    return (<div><Router><AppRoutes /></Router><Footer /></div>)
+    return (
+        <div>
+            <Router>
+                <AppRoutes />
+            </Router>
+        </div>)
 }
 
 

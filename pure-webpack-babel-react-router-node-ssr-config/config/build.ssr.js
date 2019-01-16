@@ -8,7 +8,7 @@ process.on('unhandledRejection', err => {
 
 
 const webpack = require('webpack');
-const config = require('./webpack.config.dev.bsr');
+const config = require('./webpack.config.prod.ssr');
 
 
 webpack(config).run(compileDone)
@@ -16,7 +16,7 @@ webpack(config).run(compileDone)
 
 function compileDone(err, status) {
     if (err) throw new Error(err)
-    console.log('bsr dev done')
+    console.log('ssr dev done')
 }
 
 

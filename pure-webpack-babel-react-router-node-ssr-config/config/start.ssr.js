@@ -16,7 +16,7 @@ webpack(config).run(compileDone)
 
 function compileDone(err, status) {
     if (err) throw new Error(err)
-    console.log('ssr dev done')
+    console.log('bsr dev done')
 }
 
 

@@ -10,7 +10,7 @@ const staticServer = require('koa-static');
 const cheerio = require('cheerio');
 const Loadable = require('react-loadable');
 const { getBundles } = require('react-loadable/webpack');
-const stats = require('../build-ssr/react-loadable.json');
+const stats = require('../build/react-loadable.json');
 
 const ReactApp = require('./AppSSR');
 
@@ -54,18 +54,23 @@ app.use(async function (ctx, next) {
     
     
     let modules = [];
+    let staticContext = {};
 
     let reactStr = ReactDOMServer.renderToString(
         <Loadable.Capture report={moduleName => modules.push(moduleName)}>
-            {ReactApp(ctx.path)}
+            {ReactApp(ctx.path, staticContext)}
         </Loadable.Capture>
     );
-
+    
+    if (staticContext.url) {
+        ctx.status = 301;
+        ctx.redirect(staticContext.url);
+        return;
+    }
     
     
     let bundles = getBundles(stats, modules);
-    console.log(modules);
-    console.log(bundles);
+    
     
     let scripts = bundles.map( bundle =>
         `<script src="${bundle.file}"></script>` );
