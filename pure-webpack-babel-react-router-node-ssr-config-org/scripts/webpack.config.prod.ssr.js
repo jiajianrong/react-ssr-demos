@@ -1,15 +1,15 @@
 const webpack = require('webpack');
 const nodeExternals = require("webpack-node-externals");
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+//const HtmlWebpackPlugin = require('html-webpack-plugin');
+//const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const path = require('path');
 
 
 const FILES = {
-    JS: path.join( __dirname, '../src/AppSSR.js' ),
-    BUILD: path.join( __dirname, '../build-ssr' ),
-    SRC: path.join( __dirname, '../src' ),
-    HTML: path.join( __dirname, '../public/index.html' ),
+    JS: path.join( __dirname, '../mw-ssr.js' ),
+    BUILD: path.join( __dirname, '../' ),
+    SRC: path.join( __dirname, '../react/src' ),
+    HTML: path.join( __dirname, '../react/public/index.html' ),
 };
 
 
@@ -19,19 +19,19 @@ module.exports = {
     target: 'node',
     externals: [nodeExternals()],
     entry: {
-        index: FILES.JS,
+        ['mw-ssr-es5']: FILES.JS,
     },
     output: {
         libraryTarget: 'commonjs2',
-        filename: 'static/[name].js',
-        chunkFilename: 'static/[name].js',
+        filename: '[name].js',
+        chunkFilename: '[name].js',
         path: FILES.BUILD,
     },
     
     module: {
         rules: [{
             test: /\.(js|jsx)$/,
-            include: FILES.SRC,
+            include: [ FILES.JS, FILES.SRC ],
             loader: require.resolve('babel-loader'),
         },
         ]

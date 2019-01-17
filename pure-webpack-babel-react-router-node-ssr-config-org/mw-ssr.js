@@ -1,12 +1,7 @@
-//import React from 'react';
-//import ReactDOMServer from 'react-dom/server';
 const React = require('react');
 const ReactDOMServer = require('react-dom/server');
-const http = require('http');
 const fs = require('fs');
 const path = require('path');
-const Koa = require('koa');
-const staticServer = require('koa-static');
 const cheerio = require('cheerio');
 const Loadable = require('react-loadable');
 const { getBundles } = require('react-loadable/webpack');
