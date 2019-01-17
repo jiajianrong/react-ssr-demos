@@ -1,7 +1,7 @@
 {
   "scripts": {
     "startssr": "cross-env NODE_ENV=developmentssr BABEL_ENV=developmentssr babel-watch index.js",
-    "buildssr": "cross-env NODE_ENV=productionssr  BABEL_ENV=productionssr  node scripts/build.ssr.js"
+    "buildssr": "node scripts/build.ssr.js"
   },
   "dependencies": {
     "cheerio": "^1.0.0-rc.2",

@@ -1,5 +1,5 @@
-process.env.BABEL_ENV = 'production';
-process.env.NODE_ENV = 'production';
+process.env.BABEL_ENV = 'productionssr';
+process.env.NODE_ENV = 'productionssr';
 process.on('unhandledRejection', err => {
     console.log(err)
     throw err;

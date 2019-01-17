@@ -1,7 +1,7 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
-//const paths = require('./paths');
+
 
 const FILES = {
     JS: path.join( __dirname, '../src/App.js' ),
