@@ -12,7 +12,8 @@ const App = () => {
             <Router>
                 <AppRoutes />
             </Router>
-        </div>)
+        </div>
+    )
 }
 
 

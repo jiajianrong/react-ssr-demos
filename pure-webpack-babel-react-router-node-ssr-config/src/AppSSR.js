@@ -12,5 +12,6 @@ module.exports = (routeKey, staticContext) => {
             <Router location={routeKey} context={staticContext}>
                 <AppRoutes />
             </Router>
-        </div>)
+        </div>
+    )
 }

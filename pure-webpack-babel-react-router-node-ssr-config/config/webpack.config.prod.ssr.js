@@ -48,12 +48,12 @@ module.exports = {
             filename: 'static/page-index/[name].[contenthash:8].css',
         }),*/
        
-        new webpack.optimize.CommonsChunkPlugin({
+        /*new webpack.optimize.CommonsChunkPlugin({
           name: 'vendor'
         }),
         new webpack.optimize.CommonsChunkPlugin({
           name: 'runtime'
-        }),
+        }),*/
        
         
     ]

@@ -24,12 +24,12 @@ const Footer = Loadable({
 //--------------
 export default () => (
     <div>
-    <Switch>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/hello" component={Hello} />
-        <Redirect to="/" />
-    </Switch>
-    <Footer />
+        <Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/hello" component={Hello} />
+            <Redirect to="/" />
+        </Switch>
+        <Footer />
     </div>
 )
 
