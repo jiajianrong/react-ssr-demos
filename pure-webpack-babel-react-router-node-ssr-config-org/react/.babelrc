@@ -13,6 +13,11 @@
     "developmentssr": {
       "presets": ["env", "react", "stage-0"],
       "plugins": ["transform-runtime", "dynamic-import-node", "react-loadable/babel"]
+    },
+    
+    "productionssr": {
+      "presets": ["env", "react", "stage-0"],
+      "plugins": ["transform-runtime", "dynamic-import-node", "react-loadable/babel"]
     }
   }
 }

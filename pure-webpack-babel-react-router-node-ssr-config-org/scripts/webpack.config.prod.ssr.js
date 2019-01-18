@@ -17,6 +17,9 @@ module.exports = {
     
     bail: true,
     target: 'node',
+    node: {
+        __dirname: false,
+    },
     externals: [nodeExternals()],
     entry: {
         ['mw-ssr-es5']: FILES.JS,
