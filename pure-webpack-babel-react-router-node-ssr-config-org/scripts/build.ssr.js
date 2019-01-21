@@ -7,7 +7,7 @@ process.on('unhandledRejection', err => {
 
 
 const webpack = require('webpack');
-const config = require('./webpack.config.prod.ssr');
+const config = require('./webpack.config.build.ssr');
 
 
 webpack(config).run(compileDone)
