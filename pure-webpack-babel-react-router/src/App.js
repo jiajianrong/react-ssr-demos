@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Loadable from 'react-loadable';
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect, Link } from 'react-router-dom';
 
 import AsyncBundle from './AsyncBundle';
 import Hello  from './Hello';
@@ -9,25 +9,31 @@ import Home   from './Home';
 
 
 //--------------
-// loadable
+// loadable bundle
 //--------------
-const LoadableComponent = Loadable({
+const FooterAsync = Loadable({
   loader: () => import('./Footer'/* webpackChunkName:"Footer" */),
+  loading: () => <div>Loading...</div>,
+});
+
+// 使用loadable替换async bundle
+const HelloAsync = Loadable({
+  loader: () => import('./HelloAsync'/* webpackChunkName:"HelloAsync" */),
   loading: () => <div>Loading...</div>,
 });
 
 
 //--------------
-// asyncbundle
+// async bundle
 //--------------
-const HelloAsyncEnhance = () => import(
-    './HelloAsync' /* webpackChunkName:"HelloAsync" */
-)
-const HelloAsync = (props) => (
-    <AsyncBundle load={HelloAsyncEnhance}>
-        {(Mod) => (<Mod {...props}/>)}
-    </AsyncBundle>
-)
+//const HelloAsyncEnhance = () => import(
+//  './HelloAsync' /* webpackChunkName:"HelloAsync" */
+//)
+//const HelloAsync = (props) => (
+//  <AsyncBundle load={HelloAsyncEnhance}>
+//      {(Mod) => (<Mod {...props}/>)}
+//  </AsyncBundle>
+//)
 
 
 //--------------
@@ -37,14 +43,17 @@ const App = (routeKey) => {
     return (
         <div>
             <Router>
-              <Switch>
-                <Route exact path="/" component={Home} />
-                <Route exact path="/hello" component={Hello} />
-                <Route exact path="/helloasync" component={HelloAsync}/>
-                <Redirect to="/" />
-              </Switch>
+                <div>
+                  <Link to="/aaaa" >not exist path</Link>
+                  <Switch>
+                    <Route exact path="/" component={Home} />
+                    <Route exact path="/hello" component={Hello} />
+                    <Route exact path="/helloasync" component={HelloAsync}/>
+                    <Redirect to="/" />
+                  </Switch>
+                </div>
             </Router>
-            <LoadableComponent/>
+            <FooterAsync/>
         </div>
     )
 }

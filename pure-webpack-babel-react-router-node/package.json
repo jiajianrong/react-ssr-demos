@@ -1,8 +1,11 @@
 {
   "scripts": {
-    "babelwatch": "babel-watch src/server.js"
+    "start": "set NODE_ENV=development && babel-watch src/server.js",
+    "build": "node config/build.js",
+    "startInBuildMode": "babel-node src/server.js",
+    "anotherWayToCall": "call ./node_modules/.bin/babel-node src/server.js"
   },
-  "desc1": "loadable requires webpack when dealing with react, so give up!(details as below)",
+  "desc1": "so give up the way using babel-watch along.",
   "desc2": "https://github.com/jamiebuilds/react-loadable#mapping-loaded-modules-to-bundles",
   "dependencies": {
     "cheerio": "^1.0.0-rc.2",
@@ -33,6 +36,7 @@
     "html-webpack-plugin": "2.29.0",
     "webpack": "3.5.1",
     "webpack-dev-server": "2.7.1",
-    "webpack-manifest-plugin": "1.2.1"
+    "webpack-manifest-plugin": "1.2.1",
+    "webpack-node-externals": "^1.7.2"
   }
 }

@@ -1,6 +1,7 @@
 const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const nodeExternals = require("webpack-node-externals");
+//const HtmlWebpackPlugin = require('html-webpack-plugin');
+//const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const path = require('path');
 
 
@@ -15,14 +16,20 @@ const FILES = {
 module.exports = {
     
     bail: true,
+    target: 'node',
+    node: {
+        __dirname: false,
+    },
+    externals: [nodeExternals()],
     entry: {
         index: FILES.JS,
     },
     output: {
-        filename: 'static/[name].[chunkhash:8].js',
-        chunkFilename: 'static/[name].[chunkhash:8].js',
-        publicPath: 'https://cdn.abc.com/',
-        path: FILES.BUILD,
+        libraryTarget: 'commonjs2',
+        filename: 'App.es5.js',
+        chunkFilename: '[name].es5.js',
+        //publicPath: 'https://cdn.abc.com/',
+        path: FILES.SRC,
     },
     
     module: {
@@ -36,10 +43,10 @@ module.exports = {
     
     
     plugins: [
-        new HtmlWebpackPlugin({
+        /*new HtmlWebpackPlugin({
             inject: true,
             template: FILES.HTML,
-        }),
+        }),*/
         
         /*new ExtractTextPlugin({
             filename: 'static/page-index/[name].[contenthash:8].css',

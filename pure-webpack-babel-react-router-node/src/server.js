@@ -8,7 +8,8 @@ const path = require('path');
 const Koa = require('koa');
 const cheerio = require('cheerio');
 const Loadable = require('react-loadable');
-const ReactApp = require('./App');
+const ReactApp = 'development'===process.env.NODE_ENV ? 
+    require('./App') : require('./App.es5');
 
 const app = new Koa();
 const HTML_TEMPLATE = path.join(__dirname, '../public/index.html');
@@ -54,7 +55,7 @@ app.use(async function (ctx, next) {
         </Loadable.Capture>
     );
 
-    console.log(modules);
+    console.log('modules loaded: ', modules);
     
     $(HTML_ROOT_DIV).html(reactStr);
     

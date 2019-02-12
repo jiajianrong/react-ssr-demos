@@ -7,7 +7,8 @@ const fs = require('fs');
 const path = require('path');
 const Koa = require('koa');
 const cheerio = require("cheerio");
-const reactApp = require('./App');
+const reactApp = 'development'===process.env.NODE_ENV ? 
+    require('./App') : require('./App.es5');
 
 const app = new Koa();
 const HTML_TEMPLATE = path.join(__dirname, '../public/index.html');

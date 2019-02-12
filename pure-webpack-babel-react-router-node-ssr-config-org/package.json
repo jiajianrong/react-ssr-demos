@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "startssr": "cross-env NODE_ENV=developmentssr BABEL_ENV=developmentssr babel-watch index.js",
+    "startssr": "cross-env NODE_ENV=developmentssr BABEL_ENV=developmentssr babel-node --inspect-brk index.js",
     "buildssr": "node scripts/build.ssr.js"
   },
   "dependencies": {
