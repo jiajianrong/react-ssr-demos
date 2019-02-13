@@ -5,10 +5,6 @@
       "presets": ["env", "react", "stage-0"],
       "plugins": ["transform-runtime", "react-loadable/babel"]
     },
-    "production": {
-      "presets": ["env", "react", "stage-0"],
-      "plugins": ["transform-runtime"]
-    },
     
     "ssrdevelopment": {
       "presets": ["env", "react", "stage-0"],

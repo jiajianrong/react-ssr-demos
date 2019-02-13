@@ -10,6 +10,7 @@ const FILES = {
     BUILD: path.join( __dirname, '../build' ),
     SRC: path.join( __dirname, '../src' ),
     HTML: path.join( __dirname, '../public/index.html' ),
+    READABLE_JSON: path.join( __dirname, '../build/react-loadable.json' ),
 };
 
 
@@ -53,7 +54,7 @@ module.exports = {
           name: 'runtime'
         }),
         
-        new ReactLoadablePlugin({ filename: 'build/react-loadable.json', }),
+        new ReactLoadablePlugin({ filename: FILES.READABLE_JSON }),
     ]
 
 };
