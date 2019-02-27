@@ -15,7 +15,7 @@
                                                     同时生成react-loadable.json
 - cd ./
 - npm run buildssr - 以mw-ssr.js为入口文件，生成mw-ssr-es5.js供index.js使用
-
+- node index.js    - 正常启动koaServer
 
 
 ## 说明

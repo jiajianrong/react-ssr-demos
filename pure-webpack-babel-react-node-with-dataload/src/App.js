@@ -3,8 +3,28 @@ import ReactDOM from 'react-dom';
 import { StaticRouter, Route, Switch, Redirect } from 'react-router-dom';
 
 
+
 const Home = () => <div>Home | <a href="/hello">hello</a></div>;
-const Hello = () => <div>Hello | <a href="/">home</a></div>;
+
+
+
+class Hello extends React.Component {
+    constructor(props) {
+        super(props)
+        
+        if (props.staticContext && props.staticContext.data) {
+            this.state = {username: props.staticContext.data}
+        } else {
+            this.state = {username: 'default'}
+        }
+    }
+    
+    
+    render() {
+        return (<div>Hello {this.state.username} | <a href="/">home</a></div>)
+    }
+}
+
 
 
 const App = (routeKey, context) => {

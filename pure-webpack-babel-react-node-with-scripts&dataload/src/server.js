@@ -6,9 +6,11 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 const Koa = require('koa');
+const staticServer = require('koa-static');
 const cheerio = require('cheerio');
+const { getUsername } = require('./api');
 const reactApp = 'development'===process.env.NODE_ENV ? 
-    require('./App') : require('./App.es5');
+    require('./AppSSR') : require('./AppSSR.es5');
 
 const app = new Koa();
 const HTML_TEMPLATE = path.join(__dirname, '../public/index.html');
@@ -29,10 +31,21 @@ function readFile(filePath) {
 
 
 app.use(async function (ctx, next) {
-    if (ctx.path.indexOf('favicon.ico')===-1)
-        await next();
-    else
+    if (ctx.path.indexOf('favicon.ico') !== -1) {
         ctx.body = '';
+        return;
+    }
+    await next();
+});
+
+
+app.use(async function (ctx, next) {
+    if (ctx.path.indexOf('AppBSR.es5.js') !== -1) {
+        const jsFile = path.join(__dirname, './AppBSR.es5.js');
+        ctx.body = await readFile(jsFile);
+        return;
+    }
+    await next();
 });
 
 
@@ -43,6 +56,11 @@ app.use(async function (ctx, next) {
     
     // context
     let context = {};
+    
+    // load data
+    if (ctx.path === '/hello') {
+        context.data = await getUsername();
+    }
     
     // react string
     let reactStr = ReactDOMServer.renderToString(
@@ -55,8 +73,11 @@ app.use(async function (ctx, next) {
         return;
     }
     
+    let scripts = '<script src="AppBSR.es5.js"></script>'
+    
     // 拼装
-    $(HTML_ROOT_DIV).html(reactStr);
+    // 加载浏览器端js - AppBSR
+    $(HTML_ROOT_DIV).html(reactStr).after(scripts)
     
     ctx.body = $.html();
 });

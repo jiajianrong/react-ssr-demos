@@ -1,19 +1,26 @@
 {
   "scripts": {
+    "prerequisite step": "build:bsr - 将AppBSR编译至build目录",
+    "build:bsr": "node config/build.bsr.js",
+    
+    "dev step": "start - 使用babel-watch启动server及AppSSR，并将AppBSR输出到浏览器",
     "start": "set NODE_ENV=development&&babel-watch src/server.js",
+    
+    "prod step 1": "build - 将(node端)AppSSR编译成es5",
     "build": "node config/build.js",
-    "startInBuildMode": "babel-node src/server.js",
-    "anotherWayToCall": "call ./node_modules/.bin/babel-node src/server.js"
+    
+    "prod step 2": "startInBuildMode - 执行server.js及第1步编译出的AppSSR.es5.js",
+    "startInBuildMode": "set NODE_ENV=production&&node src/server.js"
   },
-  "desc1": "so give up the way using babel-watch along.",
-  "desc2": "https://github.com/jamiebuilds/react-loadable#mapping-loaded-modules-to-bundles",
+  "desc": "standard",
   "dependencies": {
     "cheerio": "^1.0.0-rc.2",
     "koa": "^2.5.1",
+    "koa-static": "^4.0.3",
     "prop-types": "15.5.10",
     "react": "16.4.2",
     "react-dom": "16.4.2",
-    "react-loadable": "^5.5.0",
+    "react-loadable": "5.5.0",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
     "redux": "^3.7.2",
@@ -23,7 +30,6 @@
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
     "babel-loader": "^7",
-    "babel-plugin-dynamic-import-node": "^1.1.0",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "6.24.1",
@@ -31,7 +37,6 @@
     "babel-runtime": "^6",
     "babel-watch": "^2.0.7",
     "css-loader": "^0.28.11",
-    "extract-text-webpack-plugin": "^3.0.2",
     "fs-extra": "3.0.1",
     "html-webpack-plugin": "2.29.0",
     "webpack": "3.5.1",

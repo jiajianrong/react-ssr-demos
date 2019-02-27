@@ -6,9 +6,10 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 const Koa = require('koa');
+const staticServer = require('koa-static');
 const cheerio = require('cheerio');
 const reactApp = 'development'===process.env.NODE_ENV ? 
-    require('./App') : require('./App.es5');
+    require('./AppSSR') : require('./AppSSR.es5');
 
 const app = new Koa();
 const HTML_TEMPLATE = path.join(__dirname, '../public/index.html');
@@ -29,10 +30,21 @@ function readFile(filePath) {
 
 
 app.use(async function (ctx, next) {
-    if (ctx.path.indexOf('favicon.ico')===-1)
-        await next();
-    else
+    if (ctx.path.indexOf('favicon.ico') !== -1) {
         ctx.body = '';
+        return;
+    }
+    await next();
+});
+
+
+app.use(async function (ctx, next) {
+    if (ctx.path.indexOf('AppBSR.es5.js') !== -1) {
+        const jsFile = path.join(__dirname, './AppBSR.es5.js');
+        ctx.body = await readFile(jsFile);
+        return;
+    }
+    await next();
 });
 
 
@@ -55,8 +67,13 @@ app.use(async function (ctx, next) {
         return;
     }
     
-    // 拼装
-    $(HTML_ROOT_DIV).html(reactStr);
+    let scripts = '<script src="AppBSR.es5.js"></script>'
+    
+    $(HTML_ROOT_DIV)
+        // 拼装
+        .html(reactStr)
+        // 加载浏览器端js - AppBSR
+        .after(scripts)
     
     ctx.body = $.html();
 });

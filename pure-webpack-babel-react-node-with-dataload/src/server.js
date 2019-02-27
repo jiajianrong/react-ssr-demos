@@ -7,6 +7,7 @@ const fs = require('fs');
 const path = require('path');
 const Koa = require('koa');
 const cheerio = require('cheerio');
+const { getUsername } = require('./api');
 const reactApp = 'development'===process.env.NODE_ENV ? 
     require('./App') : require('./App.es5');
 
@@ -29,7 +30,7 @@ function readFile(filePath) {
 
 
 app.use(async function (ctx, next) {
-    if (ctx.path.indexOf('favicon.ico')===-1)
+    if (ctx.path.indexOf('favicon.ico') === -1)
         await next();
     else
         ctx.body = '';
@@ -43,6 +44,11 @@ app.use(async function (ctx, next) {
     
     // context
     let context = {};
+    
+    // load data
+    if (ctx.path === '/hello') {
+        context.data = await getUsername();
+    }
     
     // react string
     let reactStr = ReactDOMServer.renderToString(

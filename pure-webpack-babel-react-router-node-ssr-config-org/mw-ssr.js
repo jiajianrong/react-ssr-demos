@@ -50,7 +50,7 @@ function readFile(filePath) {
 
 
 module.exports = async function ssr(ctx, next) {
-    debugger;
+    
     let modules = [];
     let staticContext = {};
 
