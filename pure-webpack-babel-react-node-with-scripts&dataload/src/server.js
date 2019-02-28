@@ -73,11 +73,14 @@ app.use(async function (ctx, next) {
         return;
     }
     
-    let scripts = '<script src="AppBSR.es5.js"></script>'
+    let scripts = [
+        `<script>window.__SSR_DATA__ = "${context.data}"</script>`,
+        '<script src="AppBSR.es5.js"></script>',
+    ]
     
     // 拼装
     // 加载浏览器端js - AppBSR
-    $(HTML_ROOT_DIV).html(reactStr).after(scripts)
+    $(HTML_ROOT_DIV).html(reactStr).after(scripts.join('\n'))
     
     ctx.body = $.html();
 });
