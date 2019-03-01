@@ -13,7 +13,10 @@ const indexDes = path.join( __dirname, 'dist/index.js' );
 
 babel.transformFile(indexSrc, {}, async function (err, result) {
     
-    if (err) { return; }
+    if (err) { 
+        console.log(err);
+        return;
+    }
     
     await fs.ensureDir(to);
     

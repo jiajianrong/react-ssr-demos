@@ -1,5 +1,6 @@
 {
   "scripts": {
+    "prerequisite": "node config/start.ssr.js",
     "babelwatch": "cross-env NODE_ENV=ssrdevelopment BABEL_ENV=ssrdevelopment babel-watch src/server.js"
   },
   "dependencies": {

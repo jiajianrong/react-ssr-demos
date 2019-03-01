@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "prerequisite step": "build:bsr - 将AppBSR编译至build目录",
+    "prerequisite step": "build:bsr - 将AppBSR编译至AppBSR.es5",
     "build:bsr": "node config/build.bsr.js",
     
     "dev step": "start - 使用babel-watch启动server及AppSSR，并将AppBSR输出到浏览器",

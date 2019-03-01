@@ -1,9 +1,9 @@
 //const {sum} = require('./utils')
-import {sum} from './utils'
-import http from 'http'
+import {sum} from './utils';
+import http from 'http';
 
 
-console.log(sum(1,2,3,4,5))
+console.log(sum(1,2,3,4,5));
 
 
 http.createServer((req, res) => {

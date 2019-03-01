@@ -4,11 +4,7 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 
 
 
-const Home = () => {
-    return (
-        <div>Home | <a href="/hello">hello</a></div>
-    )
-};
+const Home = () => <div>Home | <a href="/hello">hello</a></div>;
 const Hello = () => <div>Hello | <a href="/">home</a></div>;
 
 

@@ -33,29 +33,13 @@ app.use(async function (ctx, next) {
     
     // html模板
     let $ = cheerio.load(await readFile(HTML_TEMPLATE));
-/*    
-    // react string
-    let reactStr = ReactDOMServer.renderToString(
-        ReactApp(ctx.path)
-    );
     
-    // 拼装
-    $(HTML_ROOT_DIV).html(reactStr);
-    
-    ctx.body = $.html();
-
-    */
-    
-    
-    let modules = [];
 
     let reactStr = ReactDOMServer.renderToString(
-        <Loadable.Capture report={moduleName => modules.push(moduleName)}>
+        <Loadable.Capture report={()=>{}}>
             {ReactApp(ctx.path)}
         </Loadable.Capture>
     );
-
-    console.log('modules loaded: ', modules);
     
     $(HTML_ROOT_DIV).html(reactStr);
     

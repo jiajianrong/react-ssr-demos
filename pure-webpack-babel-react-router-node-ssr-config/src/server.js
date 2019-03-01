@@ -39,18 +39,6 @@ app.use(async function (ctx, next) {
     
     // html模板
     let $ = cheerio.load(await readFile(HTML_TEMPLATE));
-/*    
-    // react string
-    let reactStr = ReactDOMServer.renderToString(
-        ReactApp(ctx.path)
-    );
-    
-    // 拼装
-    $(HTML_ROOT_DIV).html(reactStr);
-    
-    ctx.body = $.html();
-
-    */
     
     
     let modules = [];
@@ -69,8 +57,10 @@ app.use(async function (ctx, next) {
     }
     
     
-    let bundles = getBundles(stats, modules);
+    console.log('modules loaded: ', modules);
     
+    
+    let bundles = getBundles(stats, modules);
     
     let scripts = bundles.map( bundle =>
         `<script src="${bundle.file}"></script>` );

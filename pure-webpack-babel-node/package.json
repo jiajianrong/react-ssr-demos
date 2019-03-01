@@ -1,9 +1,16 @@
 {
   "scripts": {
-    "step1": "babel src/index.js --watch --out-file dist/index.js",
-    "step2": "node copy.js && nodemon dist/index.js",
-    "babelwatch": "babel-watch src/index.js",
-    "desc": "可以使用step1/step2，也可以单独使用babelwatch"
+      "desc": "可以使用step1/step2，也可以单独使用babelwatch",
+      
+      "option1_babel_cli": "step1将含有import语法的index.js编译成es5；step2执行",
+      "babelcli:step1": "babel src/index.js --out-file dist/index.js",
+      "babelcli:step2": "node copy.js && nodemon dist/index.js",
+      
+      "option2_babel_api": "使用babel api编译index.js，并执行",
+      "babelapi": "node babel_api.js",
+      
+      "option3_babel_watch": "使用babelwatch直接执行index.js",
+      "babelwatch": "babel-watch src/index.js"
   },
   "dependencies": {},
   "devDependencies": {
